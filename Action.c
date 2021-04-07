@@ -165,8 +165,8 @@ Htop_Reaction Action_setSortKey(Settings* settings, ProcessField sortKey) {
 
 static Htop_Reaction actionSetSortColumn(State* st) {
    Htop_Reaction reaction = HTOP_OK;
-   Panel* sortPanel = Panel_new(0, 0, 0, 0, Class(ListItem), true, FunctionBar_newEnterEsc("Sort   ", "Cancel "));
-   Panel_setHeader(sortPanel, "Sort by");
+   Panel* sortPanel = Panel_new(0, 0, 0, 0, Class(ListItem), true, FunctionBar_newEnterEsc("Sırala   ", "İptal "));
+   Panel_setHeader(sortPanel, "Sorala");
    const ProcessField* fields = st->settings->fields;
    for (int i = 0; fields[i]; i++) {
       char* name = String_trim(Process_fields[fields[i]].name);
@@ -326,7 +326,7 @@ static Htop_Reaction actionKill(State* st) {
    Panel* signalsPanel = SignalsPanel_new();
    const ListItem* sgn = (ListItem*) Action_pickFromVector(st, signalsPanel, 15, true);
    if (sgn && sgn->key != 0) {
-      Panel_setHeader((Panel*)st->mainPanel, "Sending...");
+      Panel_setHeader((Panel*)st->mainPanel, "Gönderiliyor...");
       Panel_draw((Panel*)st->mainPanel, false, true, true, State_hideFunctionBar(st));
       refresh();
       MainPanel_foreachProcess(st->mainPanel, Process_sendSignal, (Arg) { .i = sgn->key }, NULL);
@@ -337,7 +337,7 @@ static Htop_Reaction actionKill(State* st) {
 }
 
 static Htop_Reaction actionFilterByUser(State* st) {
-   Panel* usersPanel = Panel_new(0, 0, 0, 0, Class(ListItem), true, FunctionBar_newEnterEsc("Show   ", "Cancel "));
+   Panel* usersPanel = Panel_new(0, 0, 0, 0, Class(ListItem), true, FunctionBar_newEnterEsc("Göster   ", "İptal "));
    Panel_setHeader(usersPanel, "Show processes of:");
    UsersTable_foreach(st->ut, addUserToVector, usersPanel);
    Vector_insertionSort(usersPanel->items);
@@ -433,14 +433,14 @@ static const struct {
    const char* key;
    const char* info;
 } helpLeft[] = {
-   { .key = " Arrows: ", .info = "scroll process list" },
-   { .key = " Digits: ", .info = "incremental PID search" },
-   { .key = "   F3 /: ", .info = "incremental name search" },
-   { .key = "   F4 \\: ",.info = "incremental name filtering" },
-   { .key = "   F5 t: ", .info = "tree view" },
-   { .key = "      p: ", .info = "toggle program path" },
-   { .key = "      m: ", .info = "toggle merged command" },
-   { .key = "      Z: ", .info = "pause/resume process updates" },
+   { .key = " Oklar: ", .info = "kaydırma işlemi listesi" },
+   { .key = " Sayılar: ", .info = "artımlı PID araması" },
+   { .key = "   F3 /: ", .info = "artımlı ad araması" },
+   { .key = "   F4 \\: ",.info = "artımlı ad filtreleme" },
+   { .key = "   F5 t: ", .info = "ağaç görünümü" },
+   { .key = "      p: ", .info = "program yolunu değiştir" },
+   { .key = "      m: ", .info = "birleştirilmiş komutu aç / kapat" },
+   { .key = "      Z: ", .info = "işlem güncellemelerini duraklat / devam ettir" },
    { .key = "      u: ", .info = "show processes of a single user" },
    { .key = "      H: ", .info = "hide/show user process threads" },
    { .key = "      K: ", .info = "hide/show kernel threads" },
@@ -456,7 +456,7 @@ static const struct {
    const char* key;
    const char* info;
 } helpRight[] = {
-   { .key = "  Space: ", .info = "tag process" },
+   { .key = "  Boşluk: ", .info = "tag process" },
    { .key = "      c: ", .info = "tag process and its children" },
    { .key = "      U: ", .info = "untag all processes" },
    { .key = "   F9 k: ", .info = "kill process/tagged processes" },
@@ -492,15 +492,15 @@ static Htop_Reaction actionHelp(State* st) {
    int line = 0;
 
    mvaddstr(line++, 0, "htop " VERSION " - " COPYRIGHT);
-   mvaddstr(line++, 0, "Released under the GNU GPLv2. See 'man' page for more info.");
+   mvaddstr(line++, 0, "GNU GPLv2 altında yayınlandı. Daha fazla bilgi için 'man' sayfasına bakın.");
 
    attrset(CRT_colors[DEFAULT_COLOR]);
    line++;
-   mvaddstr(line++, 0, "CPU usage bar: ");
+   mvaddstr(line++, 0, "CPU Kullanı Barı: ");
 
    addattrstr(CRT_colors[BAR_BORDER], "[");
    if (st->settings->detailedCPUTime) {
-      addattrstr(CRT_colors[CPU_NICE_TEXT], "low"); addstr("/");
+      addattrstr(CRT_colors[CPU_NICE_TEXT], "düşük"); addstr("/");
       addattrstr(CRT_colors[CPU_NORMAL], "normal"); addstr("/");
       addattrstr(CRT_colors[CPU_SYSTEM], "kernel"); addstr("/");
       addattrstr(CRT_colors[CPU_IRQ], "irq"); addstr("/");
@@ -518,34 +518,34 @@ static Htop_Reaction actionHelp(State* st) {
    }
    addattrstr(CRT_colors[BAR_BORDER], "]");
    attrset(CRT_colors[DEFAULT_COLOR]);
-   mvaddstr(line++, 0, "Memory bar:    ");
+   mvaddstr(line++, 0, "Hafıza Barı:    ");
    addattrstr(CRT_colors[BAR_BORDER], "[");
-   addattrstr(CRT_colors[MEMORY_USED], "used"); addstr("/");
+   addattrstr(CRT_colors[MEMORY_USED], "kullanılan"); addstr("/");
    addattrstr(CRT_colors[MEMORY_BUFFERS_TEXT], "buffers"); addstr("/");
-   addattrstr(CRT_colors[MEMORY_SHARED], "shared"); addstr("/");
+   addattrstr(CRT_colors[MEMORY_SHARED], "paylaşılan"); addstr("/");
    addattrstr(CRT_colors[MEMORY_CACHE], "cache");
-   addattrstr(CRT_colors[BAR_SHADOW], "                     used/total");
+   addattrstr(CRT_colors[BAR_SHADOW], "                     kullanılan/toplam");
    addattrstr(CRT_colors[BAR_BORDER], "]");
    attrset(CRT_colors[DEFAULT_COLOR]);
-   mvaddstr(line++, 0, "Swap bar:      ");
+   mvaddstr(line++, 0, "Takas Barı:      ");
    addattrstr(CRT_colors[BAR_BORDER], "[");
    addattrstr(CRT_colors[SWAP], "used");
 #ifdef HTOP_LINUX
    addattrstr(CRT_colors[BAR_SHADOW], "/");
    addattrstr(CRT_colors[SWAP_CACHE], "cache");
-   addattrstr(CRT_colors[BAR_SHADOW], "                                    used/total");
+   addattrstr(CRT_colors[BAR_SHADOW], "                                    kullanılan/toplam");
 #else
-   addattrstr(CRT_colors[BAR_SHADOW], "                                          used/total");
+   addattrstr(CRT_colors[BAR_SHADOW], "                                          kullanılan/toplam");
 #endif
    addattrstr(CRT_colors[BAR_BORDER], "]");
    attrset(CRT_colors[DEFAULT_COLOR]);
-   mvaddstr(line++, 0, "Type and layout of header meters are configurable in the setup screen.");
+   mvaddstr(line++, 0, "Başlık sayaçlarının tipi ve düzeni kurulum ekranında yapılandırılabilir.");
    if (CRT_colorScheme == COLORSCHEME_MONOCHROME) {
-      mvaddstr(line, 0, "In monochrome, meters display as different chars, in order: |#*@$%&.");
+      mvaddstr(line, 0, "Monokromda, sayaçlar sırayla farklı karakterler olarak görüntülenir: |#*@$%&.");
    }
    line++;
 
-   mvaddstr(line++, 0, "Process state: R: running; S: sleeping; T: traced/stopped; Z: zombie; D: disk sleep");
+   mvaddstr(line++, 0, "İşlem durumu: R: çalışıyor; S: uyku; T: izlendi / durduruldu; Z: zombi; D: disk uyku");
 
    line++;
 
@@ -575,7 +575,7 @@ static Htop_Reaction actionHelp(State* st) {
    line++;
 
    attrset(CRT_colors[HELP_BOLD]);
-   mvaddstr(line++, 0, "Press any key to return.");
+   mvaddstr(line++, 0, "Geri dönmek için herhangi bir tuşa basın.");
    attrset(CRT_colors[DEFAULT_COLOR]);
    refresh();
    CRT_readKey();
