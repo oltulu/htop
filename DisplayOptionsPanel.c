@@ -20,7 +20,7 @@ in the source distribution for its full text.
 #include "ProvideCurses.h"
 
 
-static const char* const DisplayOptionsFunctions[] = {"      ", "      ", "      ", "      ", "      ", "      ", "      ", "      ", "      ", "Done  ", NULL};
+static const char* const DisplayOptionsFunctions[] = {"      ", "      ", "      ", "      ", "      ", "      ", "      ", "      ", "      ", "Tamam  ", NULL};
 
 static void DisplayOptionsPanel_delete(Object* object) {
    Panel* super = (Panel*) object;
@@ -96,8 +96,8 @@ DisplayOptionsPanel* DisplayOptionsPanel_new(Settings* settings, ScreenManager* 
    this->settings = settings;
    this->scr = scr;
 
-   Panel_setHeader(super, "Display options");
-   Panel_add(super, (Object*) CheckItem_newByRef("Tree view", &(settings->treeView)));
+   Panel_setHeader(super, "Görünüm Ayarları");
+   Panel_add(super, (Object*) CheckItem_newByRef("Ağaç Görünümü", &(settings->treeView)));
    Panel_add(super, (Object*) CheckItem_newByRef("- Tree view is always sorted by PID (htop 2 behavior)", &(settings->treeViewAlwaysByPID)));
    Panel_add(super, (Object*) CheckItem_newByRef("- Tree view is collapsed by default", &(settings->allBranchesCollapsed)));
    Panel_add(super, (Object*) CheckItem_newByRef("Shadow other users' processes", &(settings->shadowOtherUsers)));
@@ -130,7 +130,7 @@ DisplayOptionsPanel* DisplayOptionsPanel_new(Settings* settings, ScreenManager* 
                                                  &(settings->showCPUTemperature)));
    Panel_add(super, (Object*) CheckItem_newByRef("- Show temperature in degree Fahrenheit instead of Celsius", &(settings->degreeFahrenheit)));
    #endif
-   Panel_add(super, (Object*) CheckItem_newByRef("Enable the mouse", &(settings->enableMouse)));
+   Panel_add(super, (Object*) CheckItem_newByRef("Fare aktif", &(settings->enableMouse)));
    Panel_add(super, (Object*) NumberItem_newByRef("Update interval (in seconds)", &(settings->delay), -1, 1, 255));
    Panel_add(super, (Object*) CheckItem_newByRef("Highlight new and old processes", &(settings->highlightChanges)));
    Panel_add(super, (Object*) NumberItem_newByRef("- Highlight time (in seconds)", &(settings->highlightDelaySecs), 0, 1, 24*60*60));
