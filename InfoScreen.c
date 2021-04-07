@@ -15,7 +15,7 @@
 #include "XUtils.h"
 
 
-static const char* const InfoScreenFunctions[] = {"Search ", "Filter ", "Refresh", "Done   ", NULL};
+static const char* const InfoScreenFunctions[] = {"Ara ", "Filtrele ", "Yenile", "Tamam   ", NULL};
 
 static const char* const InfoScreenKeys[] = {"F3", "F4", "F5", "Esc"};
 
