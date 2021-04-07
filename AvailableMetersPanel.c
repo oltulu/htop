@@ -94,7 +94,7 @@ const PanelClass AvailableMetersPanel_class = {
 AvailableMetersPanel* AvailableMetersPanel_new(Settings* settings, Header* header, Panel* leftMeters, Panel* rightMeters, ScreenManager* scr, const ProcessList* pl) {
    AvailableMetersPanel* this = AllocThis(AvailableMetersPanel);
    Panel* super = (Panel*) this;
-   FunctionBar* fuBar = FunctionBar_newEnterEsc("Add   ", "Done   ");
+   FunctionBar* fuBar = FunctionBar_newEnterEsc("Ekle   ", "Tamam   ");
    Panel_init(super, 1, 1, 1, 1, Class(ListItem), true, fuBar);
 
    this->settings = settings;
@@ -103,7 +103,7 @@ AvailableMetersPanel* AvailableMetersPanel_new(Settings* settings, Header* heade
    this->rightPanel = rightMeters;
    this->scr = scr;
 
-   Panel_setHeader(super, "Available meters");
+   Panel_setHeader(super, "Mevcut sayaçlar");
    // Platform_meterTypes[0] should be always (&CPUMeter_class), which we will
    // handle separately in the code below.
    for (int i = 1; Platform_meterTypes[i]; i++) {
@@ -116,7 +116,7 @@ AvailableMetersPanel* AvailableMetersPanel_new(Settings* settings, Header* heade
    const MeterClass* type = &CPUMeter_class;
    unsigned int cpus = pl->cpuCount;
    if (cpus > 1) {
-      Panel_add(super, (Object*) ListItem_new("CPU average", 0));
+      Panel_add(super, (Object*) ListItem_new("CPU ortalaması", 0));
       for (unsigned int i = 1; i <= cpus; i++) {
          char buffer[50];
          xSnprintf(buffer, sizeof(buffer), "%s %d", type->uiName, Settings_cpuId(this->settings, i - 1));
