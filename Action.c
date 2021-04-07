@@ -166,7 +166,7 @@ Htop_Reaction Action_setSortKey(Settings* settings, ProcessField sortKey) {
 static Htop_Reaction actionSetSortColumn(State* st) {
    Htop_Reaction reaction = HTOP_OK;
    Panel* sortPanel = Panel_new(0, 0, 0, 0, Class(ListItem), true, FunctionBar_newEnterEsc("Sırala   ", "İptal "));
-   Panel_setHeader(sortPanel, "Sorala");
+   Panel_setHeader(sortPanel, "Sırala");
    const ProcessField* fields = st->settings->fields;
    for (int i = 0; fields[i]; i++) {
       char* name = String_trim(Process_fields[fields[i]].name);
