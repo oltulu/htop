@@ -21,11 +21,11 @@ in the source distribution for its full text.
 #include "XUtils.h"
 
 
-static const char* const MainFunctions[]  = {"Help  ", "Setup ", "Search", "Filter", "Tree  ", "SortBy", "Nice -", "Nice +", "Kill  ", "Quit  ", NULL};
+static const char* const MainFunctions[]  = {"Yardım  ", "Kur ", "Ara", "Filtre", "Ağaç  ", "Sorala", "Güzel -", "Güzel +", "Öldür  ", "Çıkış  ", NULL};
 
 void MainPanel_updateTreeFunctions(MainPanel* this, bool mode) {
    FunctionBar* bar = MainPanel_getFunctionBar(this);
-   FunctionBar_setLabel(bar, KEY_F(5), mode ? "List  " : "Tree  ");
+   FunctionBar_setLabel(bar, KEY_F(5), mode ? "Liste  " : "Ağaç  ");
 }
 
 void MainPanel_pidSearch(MainPanel* this, int ch) {
