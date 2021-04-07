@@ -29,7 +29,7 @@ in the source distribution for its full text.
 #include "XUtils.h"
 
 
-static const char* const TraceScreenFunctions[] = {"Search ", "Filter ", "AutoScroll ", "Stop Tracing   ", "Done   ", NULL};
+static const char* const TraceScreenFunctions[] = {"Ara ", "Filtre ", "Otomatik kaydırma ", "İzlemeyi Durdur   ", "Tamam   ", NULL};
 
 static const char* const TraceScreenKeys[] = {"F3", "F4", "F8", "F9", "Esc"};
 
