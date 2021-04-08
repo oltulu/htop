@@ -38,10 +38,10 @@ static void BatteryMeter_updateValues(Meter* this) {
    const char* text;
    switch (isOnAC) {
    case AC_PRESENT:
-      text = this->mode == TEXT_METERMODE ? " (Running on A/C)" : "(A/C)";
+      text = this->mode == TEXT_METERMODE ? " (A/C ile çalışıyor)" : "(A/C)";
       break;
    case AC_ABSENT:
-      text = this->mode == TEXT_METERMODE ? " (Running on battery)" : "(bat)";
+      text = this->mode == TEXT_METERMODE ? " (Pille çalışıyor)" : "(bat)";
       break;
    case AC_ERROR:
    default:
@@ -62,7 +62,7 @@ const MeterClass BatteryMeter_class = {
    .maxItems = 1,
    .total = 100.0,
    .attributes = BatteryMeter_attributes,
-   .name = "Battery",
-   .uiName = "Battery",
-   .caption = "Battery: "
+   .name = "Batarya",
+   .uiName = "Batarya",
+   .caption = "Batarya: "
 };
