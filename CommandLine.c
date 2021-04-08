@@ -46,23 +46,23 @@ static void printHelpFlag(const char* name) {
    printf("%s " VERSION "\n"
          COPYRIGHT "\n"
          "Released under the GNU GPLv2.\n\n"
-         "-C --no-color                   Use a monochrome color scheme\n"
-         "-d --delay=DELAY                Set the delay between updates, in tenths of seconds\n"
-         "-F --filter=FILTER              Show only the commands matching the given filter\n"
-         "-h --help                       Print this help screen\n"
-         "-H --highlight-changes[=DELAY]  Highlight new and old processes\n"
-         "-M --no-mouse                   Disable the mouse\n"
-         "-p --pid=PID[,PID,PID...]       Show only the given PIDs\n"
-         "-s --sort-key=COLUMN            Sort by COLUMN in list view (try --sort-key=help for a list)\n"
-         "-t --tree                       Show the tree view (can be combined with -s)\n"
-         "-u --user[=USERNAME]            Show only processes for a given user (or $USER)\n"
-         "-U --no-unicode                 Do not use unicode but plain ASCII\n"
-         "-V --version                    Print version info\n", name);
+         "-C --no-color                   Tek renkli bir renk düzeni kullanın\n"
+         "-d --delay=DELAY                Güncellemeler arasındaki gecikmeyi saniyenin onda biri olarak ayarlayın\n"
+         "-F --filter=FILTER              Yalnızca verilen filtreyle eşleşen komutları göster\n"
+         "-h --help                       Bu yardım ekranını yazdırın\n"
+         "-H --highlight-changes[=DELAY]  Yeni ve eski süreçleri vurgulayın\n"
+         "-M --no-mouse                   Fareyi devre dışı bırakın\n"
+         "-p --pid=PID[,PID,PID...]       Yalnızca verilen PID'yi göster\n"
+         "-s --sort-key=COLUMN            Liste görünümünde SÜTUNA göre sırala (liste için --sort-key = yardım deneyin)\n"
+         "-t --tree                       Ağaç görünümünü göster (-s ile birleştirilebilir)\n"
+         "-u --user[=USERNAME]            Yalnızca belirli bir kullanıcı (veya $ USER) için işlemleri göster\n"
+         "-U --no-unicode                 Unicode kullanmayın, düz ASCII\n"
+         "-V --version                    Sürüm bilgilerini yazdır\n", name);
    Platform_longOptionsUsage(name);
    printf("\n"
-         "Long options may be passed with a single dash.\n\n"
-         "Press F1 inside %s for online help.\n"
-         "See 'man %s' for more information.\n", name, name);
+         "Uzun seçenekler tek bir çizgi ile geçilebilir.\n\n"
+         "Çevrimiçi yardım için %s içinde F1'e basın.\n"
+         "Daha fazla bilgi için "%s man" bakın.\n", name, name);
 }
 
 // ----------------------------------------
@@ -129,7 +129,7 @@ static CommandLineSettings parseArguments(const char* program, int argc, char** 
             exit(0);
          case 's':
             assert(optarg); /* please clang analyzer, cause optarg can be NULL in the 'u' case */
-            if (String_eq(optarg, "help")) {
+            if (String_eq(optarg, "yardım")) {
                for (int j = 1; j < LAST_PROCESSFIELD; j++) {
                   const char* name = Process_fields[j].name;
                   const char* description = Process_fields[j].description;
@@ -147,7 +147,7 @@ static CommandLineSettings parseArguments(const char* program, int argc, char** 
                }
             }
             if (flags.sortKey == 0) {
-               fprintf(stderr, "Error: invalid column \"%s\".\n", optarg);
+               fprintf(stderr, "Hata: geçersiz sütun \"%s\".\n", optarg);
                exit(1);
             }
             break;
@@ -156,7 +156,7 @@ static CommandLineSettings parseArguments(const char* program, int argc, char** 
                if (flags.delay < 1) flags.delay = 1;
                if (flags.delay > 100) flags.delay = 100;
             } else {
-               fprintf(stderr, "Error: invalid delay value \"%s\".\n", optarg);
+               fprintf(stderr, "Hata: geçersiz gecikme değeri \"%s\".\n", optarg);
                exit(1);
             }
             break;
@@ -171,7 +171,7 @@ static CommandLineSettings parseArguments(const char* program, int argc, char** 
             if (!username) {
                flags.userId = geteuid();
             } else if (!Action_setUserOnly(username, &(flags.userId))) {
-               fprintf(stderr, "Error: invalid user \"%s\".\n", username);
+               fprintf(stderr, "Hata: geçersiz kullanıcı\"%s\".\n", username);
                exit(1);
             }
             break;
@@ -224,7 +224,7 @@ static CommandLineSettings parseArguments(const char* program, int argc, char** 
                    if (flags.highlightDelaySecs < 1)
                       flags.highlightDelaySecs = 1;
                 } else {
-                   fprintf(stderr, "Error: invalid highlight delay value \"%s\".\n", delay);
+                   fprintf(stderr, "Hata: geçersiz vurgulama gecikme değeri\"%s\".\n", delay);
                    exit(1);
                 }
             }
@@ -353,7 +353,7 @@ int CommandLine_run(const char* name, int argc, char** argv) {
    if (settings->changed) {
       int r = Settings_write(settings);
       if (r < 0)
-         fprintf(stderr, "Can not save configuration to %s: %s\n", settings->filename, strerror(-r));
+         fprintf(stderr, "Yapılandırma değere kaydedilemez %s: %s\n", settings->filename, strerror(-r));
    }
 
    Header_delete(header);
