@@ -62,7 +62,7 @@ static void printHelpFlag(const char* name) {
    printf("\n"
          "Uzun seçenekler tek bir çizgi ile geçilebilir.\n\n"
          "Çevrimiçi yardım için %s içinde F1'e basın.\n"
-         "Daha fazla bilgi için "\"%s man\" bakın.\n", name, name);
+         "Daha fazla bilgi için \"%s man\" bakın.\n", name, name);
 }
 
 // ----------------------------------------
