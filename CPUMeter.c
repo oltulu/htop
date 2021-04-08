@@ -53,7 +53,7 @@ static void CPUMeter_init(Meter* this) {
 static void CPUMeter_updateValues(Meter* this) {
    unsigned int cpu = this->param;
    if (cpu > this->pl->cpuCount) {
-      xSnprintf(this->txtBuffer, sizeof(this->txtBuffer), "absent");
+      xSnprintf(this->txtBuffer, sizeof(this->txtBuffer), "yok");
       for (uint8_t i = 0; i < this->curItems; i++)
          this->values[i] = 0;
       return;
@@ -103,7 +103,7 @@ static void CPUMeter_display(const Object* cast, RichString* out) {
    char buffer[50];
    const Meter* this = (const Meter*)cast;
    if (this->param > this->pl->cpuCount) {
-      RichString_appendAscii(out, CRT_colors[METER_TEXT], "absent");
+      RichString_appendAscii(out, CRT_colors[METER_TEXT], "yok");
       return;
    }
    xSnprintf(buffer, sizeof(buffer), "%5.1f%% ", this->values[CPU_METER_NORMAL]);
@@ -160,7 +160,7 @@ static void CPUMeter_display(const Object* cast, RichString* out) {
       } else {
          xSnprintf(cpuTemperatureBuffer, sizeof(cpuTemperatureBuffer), "%5.1f%sC", cpuTemperature, CRT_degreeSign);
       }
-      RichString_appendAscii(out, CRT_colors[METER_TEXT], "temp:");
+      RichString_appendAscii(out, CRT_colors[METER_TEXT], "çöp:");
       RichString_appendWide(out, CRT_colors[METER_VALUE], cpuTemperatureBuffer);
    }
    #endif
@@ -344,9 +344,9 @@ const MeterClass AllCPUsMeter_class = {
    .defaultMode = CUSTOM_METERMODE,
    .total = 100.0,
    .attributes = CPUMeter_attributes,
-   .name = "AllCPUs",
-   .uiName = "CPUs (1/1)",
-   .description = "CPUs (1/1): all CPUs",
+   .name = "Tüm CPU",
+   .uiName = "CPUlar (1/1)",
+   .description = "CPUlar  (1/1): Tüm CPUlar",
    .caption = "CPU",
    .draw = SingleColCPUsMeter_draw,
    .init = SingleColCPUsMeter_init,
@@ -366,7 +366,7 @@ const MeterClass AllCPUs2Meter_class = {
    .attributes = CPUMeter_attributes,
    .name = "AllCPUs2",
    .uiName = "CPUs (1&2/2)",
-   .description = "CPUs (1&2/2): all CPUs in 2 shorter columns",
+   .description = "CPUs (1&2/2): 2 kısa sütunda tüm CPU'lar",
    .caption = "CPU",
    .draw = DualColCPUsMeter_draw,
    .init = DualColCPUsMeter_init,
@@ -386,7 +386,7 @@ const MeterClass LeftCPUsMeter_class = {
    .attributes = CPUMeter_attributes,
    .name = "LeftCPUs",
    .uiName = "CPUs (1/2)",
-   .description = "CPUs (1/2): first half of list",
+   .description = "CPUs (1/2): listenin ilk yarısı",
    .caption = "CPU",
    .draw = SingleColCPUsMeter_draw,
    .init = SingleColCPUsMeter_init,
@@ -406,7 +406,7 @@ const MeterClass RightCPUsMeter_class = {
    .attributes = CPUMeter_attributes,
    .name = "RightCPUs",
    .uiName = "CPUs (2/2)",
-   .description = "CPUs (2/2): second half of list",
+   .description = "CPUs (2/2): listenin ikinci yarısı",
    .caption = "CPU",
    .draw = SingleColCPUsMeter_draw,
    .init = SingleColCPUsMeter_init,
@@ -426,7 +426,7 @@ const MeterClass LeftCPUs2Meter_class = {
    .attributes = CPUMeter_attributes,
    .name = "LeftCPUs2",
    .uiName = "CPUs (1&2/4)",
-   .description = "CPUs (1&2/4): first half in 2 shorter columns",
+   .description = "CPUs (1&2/4): 2 kısa sütunun ilk yarısı",
    .caption = "CPU",
    .draw = DualColCPUsMeter_draw,
    .init = DualColCPUsMeter_init,
@@ -446,7 +446,7 @@ const MeterClass RightCPUs2Meter_class = {
    .attributes = CPUMeter_attributes,
    .name = "RightCPUs2",
    .uiName = "CPUs (3&4/4)",
-   .description = "CPUs (3&4/4): second half in 2 shorter columns",
+   .description = "CPUs (3&4/4): 2 kısa sütunda ikinci yarı",
    .caption = "CPU",
    .draw = DualColCPUsMeter_draw,
    .init = DualColCPUsMeter_init,
@@ -466,7 +466,7 @@ const MeterClass AllCPUs4Meter_class = {
    .attributes = CPUMeter_attributes,
    .name = "AllCPUs4",
    .uiName = "CPUs (1&2&3&4/4)",
-   .description = "CPUs (1&2&3&4/4): all CPUs in 4 shorter columns",
+   .description = "CPUs (1&2&3&4/4): 4 kısa sütunda tüm CPU'lar",
    .caption = "CPU",
    .draw = QuadColCPUsMeter_draw,
    .init = QuadColCPUsMeter_init,
@@ -486,7 +486,7 @@ const MeterClass LeftCPUs4Meter_class = {
    .attributes = CPUMeter_attributes,
    .name = "LeftCPUs4",
    .uiName = "CPUs (1-4/8)",
-   .description = "CPUs (1-4/8): first half in 4 shorter columns",
+   .description = "CPUs (1-4/8): 4 kısa sütunun ilk yarısı",
    .caption = "CPU",
    .draw = QuadColCPUsMeter_draw,
    .init = QuadColCPUsMeter_init,
@@ -506,7 +506,7 @@ const MeterClass RightCPUs4Meter_class = {
    .attributes = CPUMeter_attributes,
    .name = "RightCPUs4",
    .uiName = "CPUs (5-8/8)",
-   .description = "CPUs (5-8/8): second half in 4 shorter columns",
+   .description = "CPUs (5-8/8): 4 kısa sütunda ikinci yarı",
    .caption = "CPU",
    .draw = QuadColCPUsMeter_draw,
    .init = QuadColCPUsMeter_init,
@@ -526,7 +526,7 @@ const MeterClass AllCPUs8Meter_class = {
    .attributes = CPUMeter_attributes,
    .name = "AllCPUs8",
    .uiName = "CPUs (1-8/8)",
-   .description = "CPUs (1-8/8): all CPUs in 8 shorter columns",
+   .description = "CPUs (1-8/8): 8 daha kısa sütunda tüm CPU'lar",
    .caption = "CPU",
    .draw = OctoColCPUsMeter_draw,
    .init = OctoColCPUsMeter_init,
@@ -546,7 +546,7 @@ const MeterClass LeftCPUs8Meter_class = {
    .attributes = CPUMeter_attributes,
    .name = "LeftCPUs8",
    .uiName = "CPUs (1-8/16)",
-   .description = "CPUs (1-8/16): first half in 8 shorter columns",
+   .description = "CPUs (1-8/16): 8 kısa sütunun ilk yarısı",
    .caption = "CPU",
    .draw = OctoColCPUsMeter_draw,
    .init = OctoColCPUsMeter_init,
@@ -566,7 +566,7 @@ const MeterClass RightCPUs8Meter_class = {
    .attributes = CPUMeter_attributes,
    .name = "RightCPUs8",
    .uiName = "CPUs (9-16/16)",
-   .description = "CPUs (9-16/16): second half in 8 shorter columns",
+   .description = "CPUs (9-16/16): 8 kısa sütunda ikinci yarı",
    .caption = "CPU",
    .draw = OctoColCPUsMeter_draw,
    .init = OctoColCPUsMeter_init,
