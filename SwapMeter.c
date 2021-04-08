@@ -39,12 +39,12 @@ static void SwapMeter_display(const Object* cast, RichString* out) {
    Meter_humanUnit(buffer, this->total, sizeof(buffer));
    RichString_appendAscii(out, CRT_colors[METER_VALUE], buffer);
    Meter_humanUnit(buffer, this->values[0], sizeof(buffer));
-   RichString_appendAscii(out, CRT_colors[METER_TEXT], " used:");
+   RichString_appendAscii(out, CRT_colors[METER_TEXT], " kullanılan:");
    RichString_appendAscii(out, CRT_colors[METER_VALUE], buffer);
 
 #ifdef HTOP_LINUX
    Meter_humanUnit(buffer, this->values[1], sizeof(buffer));
-   RichString_appendAscii(out, CRT_colors[METER_TEXT], " cache:");
+   RichString_appendAscii(out, CRT_colors[METER_TEXT], " bellek:");
    RichString_appendAscii(out, CRT_colors[SWAP_CACHE], buffer);
 #endif
 }
@@ -60,7 +60,7 @@ const MeterClass SwapMeter_class = {
    .maxItems = 2,
    .total = 100.0,
    .attributes = SwapMeter_attributes,
-   .name = "Swap",
-   .uiName = "Swap",
-   .caption = "Swp"
+   .name = "Takas",
+   .uiName = "Takas",
+   .caption = "Tks"
 };
