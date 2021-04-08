@@ -50,7 +50,7 @@ static void DiskIOMeter_updateValues(Meter* this) {
       hasData = Platform_getDiskIO(&data);
       if (!hasData) {
          this->values[0] = 0;
-         xSnprintf(this->txtBuffer, sizeof(this->txtBuffer), "no data");
+         xSnprintf(this->txtBuffer, sizeof(this->txtBuffer), "veri yok");
          return;
       }
 
@@ -92,7 +92,7 @@ static void DiskIOMeter_updateValues(Meter* this) {
 
 static void DiskIOMeter_display(ATTR_UNUSED const Object* cast, RichString* out) {
    if (!hasData) {
-      RichString_writeAscii(out, CRT_colors[METER_VALUE_ERROR], "no data");
+      RichString_writeAscii(out, CRT_colors[METER_VALUE_ERROR], "veri yok");
       return;
    }
 
@@ -102,11 +102,11 @@ static void DiskIOMeter_display(ATTR_UNUSED const Object* cast, RichString* out)
    xSnprintf(buffer, sizeof(buffer), "%.1f%%", cached_utilisation_diff);
    RichString_writeAscii(out, CRT_colors[color], buffer);
 
-   RichString_appendAscii(out, CRT_colors[METER_TEXT], " read: ");
+   RichString_appendAscii(out, CRT_colors[METER_TEXT], " oku: ");
    Meter_humanUnit(buffer, cached_read_diff, sizeof(buffer));
    RichString_appendAscii(out, CRT_colors[METER_VALUE_IOREAD], buffer);
 
-   RichString_appendAscii(out, CRT_colors[METER_TEXT], " write: ");
+   RichString_appendAscii(out, CRT_colors[METER_TEXT], " yaz: ");
    Meter_humanUnit(buffer, cached_write_diff, sizeof(buffer));
    RichString_appendAscii(out, CRT_colors[METER_VALUE_IOWRITE], buffer);
 }
