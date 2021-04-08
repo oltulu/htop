@@ -34,7 +34,7 @@ const MeterClass HostnameMeter_class = {
    .maxItems = 0,
    .total = 100.0,
    .attributes = HostnameMeter_attributes,
-   .name = "Hostname",
-   .uiName = "Hostname",
-   .caption = "Hostname: ",
+   .name = "Bilgisayar Adı",
+   .uiName = "Bilgisayar Adı",
+   .caption = "Bilgisayar Adı: ",
 };
