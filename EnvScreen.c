@@ -25,7 +25,7 @@ void EnvScreen_delete(Object* this) {
 }
 
 static void EnvScreen_draw(InfoScreen* this) {
-   InfoScreen_drawTitled(this, "Environment of process %d - %s", this->process->pid, Process_getCommand(this->process));
+   InfoScreen_drawTitled(this, "Süreç ortamı %d - %s", this->process->pid, Process_getCommand(this->process));
 }
 
 static void EnvScreen_scan(InfoScreen* this) {
@@ -41,7 +41,7 @@ static void EnvScreen_scan(InfoScreen* this) {
       free(env);
    }
    else {
-      InfoScreen_addLine(this, "Could not read process environment.");
+      InfoScreen_addLine(this, "İşlem ortamı okunamadı.");
    }
 
    Vector_insertionSort(this->lines);
