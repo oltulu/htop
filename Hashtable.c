@@ -37,15 +37,15 @@ struct Hashtable_ {
 #ifndef NDEBUG
 
 static void Hashtable_dump(const Hashtable* this) {
-   fprintf(stderr, "Hashtable %p: size=%zu items=%zu owner=%s\n",
+   fprintf(stderr, "Hash tablosu %p: boyut=%zu adet=%zu sahip=%s\n",
            (const void*)this,
            this->size,
            this->items,
-           this->owner ? "yes" : "no");
+           this->owner ? "evet" : "hayır");
 
    size_t items = 0;
    for (size_t i = 0; i < this->size; i++) {
-      fprintf(stderr, "  item %5zu: key = %5u probe = %2zu value = %p\n",
+      fprintf(stderr, "  adet %5zu: key = %5u probe = %2zu değer = %p\n",
               i,
               this->buckets[i].key,
               this->buckets[i].probe,
@@ -55,7 +55,7 @@ static void Hashtable_dump(const Hashtable* this) {
          items++;
    }
 
-   fprintf(stderr, "Hashtable %p: items=%zu counted=%zu\n",
+   fprintf(stderr, "Hash tablosu %p: adet=%zu sayılan=%zu\n",
            (const void*)this,
            this->items,
            items);
@@ -102,7 +102,7 @@ static size_t nextPrime(size_t n) {
          return OEISprimes[i];
    }
 
-   CRT_fatalError("Hashtable: no prime found");
+   CRT_fatalError("Hash tablosu: asal bulunamadı");
 }
 
 Hashtable* Hashtable_new(size_t size, bool owner) {
@@ -217,7 +217,7 @@ void Hashtable_put(Hashtable* this, ht_key_t key, void* value) {
    /* grow on load-factor > 0.7 */
    if (10 * this->items > 7 * this->size) {
       if (SIZE_MAX / 2 < this->size)
-         CRT_fatalError("Hashtable: size overflow");
+         CRT_fatalError("Hash tablosu: boyut aşımı");
 
       Hashtable_setSize(this, 2 * this->size);
    }
