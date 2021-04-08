@@ -98,45 +98,45 @@ DisplayOptionsPanel* DisplayOptionsPanel_new(Settings* settings, ScreenManager* 
 
    Panel_setHeader(super, "Görünüm Ayarları");
    Panel_add(super, (Object*) CheckItem_newByRef("Ağaç Görünümü", &(settings->treeView)));
-   Panel_add(super, (Object*) CheckItem_newByRef("- Tree view is always sorted by PID (htop 2 behavior)", &(settings->treeViewAlwaysByPID)));
-   Panel_add(super, (Object*) CheckItem_newByRef("- Tree view is collapsed by default", &(settings->allBranchesCollapsed)));
-   Panel_add(super, (Object*) CheckItem_newByRef("Shadow other users' processes", &(settings->shadowOtherUsers)));
-   Panel_add(super, (Object*) CheckItem_newByRef("Hide kernel threads", &(settings->hideKernelThreads)));
-   Panel_add(super, (Object*) CheckItem_newByRef("Hide userland process threads", &(settings->hideUserlandThreads)));
-   Panel_add(super, (Object*) CheckItem_newByRef("Display threads in a different color", &(settings->highlightThreads)));
-   Panel_add(super, (Object*) CheckItem_newByRef("Show custom thread names", &(settings->showThreadNames)));
-   Panel_add(super, (Object*) CheckItem_newByRef("Show program path", &(settings->showProgramPath)));
-   Panel_add(super, (Object*) CheckItem_newByRef("Highlight program \"basename\"", &(settings->highlightBaseName)));
-   Panel_add(super, (Object*) CheckItem_newByRef("Merge exe, comm and cmdline in Command", &(settings->showMergedCommand)));
-   Panel_add(super, (Object*) CheckItem_newByRef("- Try to find comm in cmdline (when Command is merged)", &(settings->findCommInCmdline)));
-   Panel_add(super, (Object*) CheckItem_newByRef("- Try to strip exe from cmdline (when Command is merged)", &(settings->stripExeFromCmdline)));
-   Panel_add(super, (Object*) CheckItem_newByRef("Highlight large numbers in memory counters", &(settings->highlightMegabytes)));
-   Panel_add(super, (Object*) CheckItem_newByRef("Leave a margin around header", &(settings->headerMargin)));
-   Panel_add(super, (Object*) CheckItem_newByRef("Detailed CPU time (System/IO-Wait/Hard-IRQ/Soft-IRQ/Steal/Guest)", &(settings->detailedCPUTime)));
-   Panel_add(super, (Object*) CheckItem_newByRef("Count CPUs from 1 instead of 0", &(settings->countCPUsFromOne)));
-   Panel_add(super, (Object*) CheckItem_newByRef("Update process names on every refresh", &(settings->updateProcessNames)));
-   Panel_add(super, (Object*) CheckItem_newByRef("Add guest time in CPU meter percentage", &(settings->accountGuestInCPUMeter)));
-   Panel_add(super, (Object*) CheckItem_newByRef("Also show CPU percentage numerically", &(settings->showCPUUsage)));
-   Panel_add(super, (Object*) CheckItem_newByRef("Also show CPU frequency", &(settings->showCPUFrequency)));
+   Panel_add(super, (Object*) CheckItem_newByRef("- Ağaç görünümü her zaman PID'ye göre sıralanır (htop 2 davranışı)", &(settings->treeViewAlwaysByPID)));
+   Panel_add(super, (Object*) CheckItem_newByRef("- Ağaç görünümü varsayılan olarak daraltılmıştır", &(settings->allBranchesCollapsed)));
+   Panel_add(super, (Object*) CheckItem_newByRef("Diğer kullanıcıların işlemlerini gölgeleyin", &(settings->shadowOtherUsers)));
+   Panel_add(super, (Object*) CheckItem_newByRef("Çekirdek dizilerini gizle", &(settings->hideKernelThreads)));
+   Panel_add(super, (Object*) CheckItem_newByRef("Kullanıcı alanı işlem konularını gizle", &(settings->hideUserlandThreads)));
+   Panel_add(super, (Object*) CheckItem_newByRef("İşlemleri farklı bir renkte görüntüle", &(settings->highlightThreads)));
+   Panel_add(super, (Object*) CheckItem_newByRef("Özel iş parçacığı adlarını göster", &(settings->showThreadNames)));
+   Panel_add(super, (Object*) CheckItem_newByRef("Program yolunu göster", &(settings->showProgramPath)));
+   Panel_add(super, (Object*) CheckItem_newByRef("\"basename\" programını vurgulayın", &(settings->highlightBaseName)));
+   Panel_add(super, (Object*) CheckItem_newByRef("Komutta exe, comm ve cmdline'ı birleştirin", &(settings->showMergedCommand)));
+   Panel_add(super, (Object*) CheckItem_newByRef("- Cmdline'da comm bulmaya çalışın (Komut birleştirildiğinde)", &(settings->findCommInCmdline)));
+   Panel_add(super, (Object*) CheckItem_newByRef("- Cmdline'dan exe'yi çıkarmaya çalışın (Komut birleştirildiğinde)", &(settings->stripExeFromCmdline)));
+   Panel_add(super, (Object*) CheckItem_newByRef("Bellek sayacındaki büyük sayıları vurgulayıns", &(settings->highlightMegabytes)));
+   Panel_add(super, (Object*) CheckItem_newByRef("Başlığın etrafında bir kenar boşluğu bırakın", &(settings->headerMargin)));
+   Panel_add(super, (Object*) CheckItem_newByRef("Ayrıntılı CPU süresi (Sistem / IO-Wait / Hard-IRQ / Soft-IRQ / Steal / Guest", &(settings->detailedCPUTime)));
+   Panel_add(super, (Object*) CheckItem_newByRef("CPU'ları 0 yerine 1'den say", &(settings->countCPUsFromOne)));
+   Panel_add(super, (Object*) CheckItem_newByRef("Her yenilemede işlem adlarını güncelleyin", &(settings->updateProcessNames)));
+   Panel_add(super, (Object*) CheckItem_newByRef("CPU ölçer yüzdesinde misafir süresi ekleyin", &(settings->accountGuestInCPUMeter)));
+   Panel_add(super, (Object*) CheckItem_newByRef("Ayrıca CPU yüzdesini sayısal olarak göster", &(settings->showCPUUsage)));
+   Panel_add(super, (Object*) CheckItem_newByRef("Ayrıca CPU frekansını göster", &(settings->showCPUFrequency)));
    #ifdef BUILD_WITH_CPU_TEMP
    Panel_add(super, (Object*) CheckItem_newByRef(
    #if defined(HTOP_LINUX)
-                                                 "Also show CPU temperature (requires libsensors)",
+                                                 "Ayrıca CPU sıcaklığını göster (libsensor gerektirir)",
    #elif defined(HTOP_FREEBSD)
-                                                 "Also show CPU temperature",
+                                                 "Ayrıca CPU sıcaklığını göster",
    #else
    #error Unknown temperature implementation!
    #endif
                                                  &(settings->showCPUTemperature)));
-   Panel_add(super, (Object*) CheckItem_newByRef("- Show temperature in degree Fahrenheit instead of Celsius", &(settings->degreeFahrenheit)));
+   Panel_add(super, (Object*) CheckItem_newByRef("- Sıcaklığı Santigrat yerine Fahrenheit cinsinden göster", &(settings->degreeFahrenheit)));
    #endif
    Panel_add(super, (Object*) CheckItem_newByRef("Fare aktif", &(settings->enableMouse)));
-   Panel_add(super, (Object*) NumberItem_newByRef("Update interval (in seconds)", &(settings->delay), -1, 1, 255));
-   Panel_add(super, (Object*) CheckItem_newByRef("Highlight new and old processes", &(settings->highlightChanges)));
-   Panel_add(super, (Object*) NumberItem_newByRef("- Highlight time (in seconds)", &(settings->highlightDelaySecs), 0, 1, 24*60*60));
-   Panel_add(super, (Object*) NumberItem_newByRef("Hide main function bar (0 - off, 1 - on ESC until next input, 2 - permanently)", &(settings->hideFunctionBar), 0, 0, 2));
+   Panel_add(super, (Object*) NumberItem_newByRef("Güncelleme aralığı (saniye cinsinden)", &(settings->delay), -1, 1, 255));
+   Panel_add(super, (Object*) CheckItem_newByRef("Yeni ve eski süreçleri vurgulayın", &(settings->highlightChanges)));
+   Panel_add(super, (Object*) NumberItem_newByRef("- Vurgu süresi (saniye cinsinden)", &(settings->highlightDelaySecs), 0, 1, 24*60*60));
+   Panel_add(super, (Object*) NumberItem_newByRef("Ana işlev çubuğunu gizle (0 - kapalı, 1 - sonraki girişe kadar ESC'de, 2 - kalıcı olarak)", &(settings->hideFunctionBar), 0, 0, 2));
    #ifdef HAVE_LIBHWLOC
-   Panel_add(super, (Object*) CheckItem_newByRef("Show topology when selecting affinity by default", &(settings->topologyAffinity)));
+   Panel_add(super, (Object*) CheckItem_newByRef("Varsayılan olarak yakınlığı seçerken topolojiyi göster", &(settings->topologyAffinity)));
    #endif
    return this;
 }
