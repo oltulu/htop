@@ -92,7 +92,7 @@ bool TraceScreen_forkTracer(TraceScreen* this) {
       execlp("strace", "strace", "-T", "-tt", "-s", "512", "-p", buffer, NULL);
 
       // Should never reach here, unless execlp fails ...
-      const char* message = "Could not execute 'strace'. Please make sure it is available in your $PATH.";
+      const char* message = "'Strace' yürütülemedi. Lütfen $PATH mevcut olduğundan emin olun .";
       (void)! write(STDERR_FILENO, message, strlen(message));
 
       exit(127);
@@ -171,7 +171,7 @@ static bool TraceScreen_onKey(InfoScreen* super, int ch) {
       case 't':
       case KEY_F(9):
          this->tracing = !this->tracing;
-         FunctionBar_setLabel(super->display->defaultBar, KEY_F(9), this->tracing?"Stop Tracing   ":"Resume Tracing ");
+         FunctionBar_setLabel(super->display->defaultBar, KEY_F(9), this->tracing?"İzlemeyi Durdur   ":"İzlemeye Devam Et ");
          InfoScreen_draw(this);
          return true;
    }
