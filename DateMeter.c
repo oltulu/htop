@@ -44,7 +44,7 @@ const MeterClass DateMeter_class = {
    .maxItems = 1,
    .total = 365,
    .attributes = DateMeter_attributes,
-   .name = "Date",
-   .uiName = "Date",
-   .caption = "Date: ",
+   .name = "Tarih",
+   .uiName = "Tarih",
+   .caption = "Tarih: ",
 };
