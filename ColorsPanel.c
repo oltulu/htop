@@ -27,16 +27,16 @@ in the source distribution for its full text.
 // * Add the colors in CRT_setColors
 
 
-static const char* const ColorsFunctions[] = {"      ", "      ", "      ", "      ", "      ", "      ", "      ", "      ", "      ", "Done  ", NULL};
+static const char* const ColorsFunctions[] = {"      ", "      ", "      ", "      ", "      ", "      ", "      ", "      ", "      ", "Bitti  ", NULL};
 
 static const char* const ColorSchemeNames[] = {
-   "Default",
-   "Monochromatic",
-   "Black on White",
-   "Light Terminal",
+   "Varsayılan",
+   "Tek renkli",
+   "Beyaz üzerine Siyah",
+   "Işık Terminali",
    "MC",
-   "Black Night",
-   "Broken Gray",
+   "Kara gece",
+   "Kırık Gri",
    NULL
 };
 
@@ -97,7 +97,7 @@ ColorsPanel* ColorsPanel_new(Settings* settings, ScreenManager* scr) {
 
    assert(ARRAYSIZE(ColorSchemeNames) == LAST_COLORSCHEME + 1);
 
-   Panel_setHeader(super, "Colors");
+   Panel_setHeader(super, "Renkler");
    for (int i = 0; ColorSchemeNames[i] != NULL; i++) {
       Panel_add(super, (Object*) CheckItem_newByVal(ColorSchemeNames[i], false));
    }
