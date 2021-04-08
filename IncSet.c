@@ -36,7 +36,7 @@ void IncSet_setFilter(IncSet* this, const char* filter) {
    this->filtering = true;
 }
 
-static const char* const searchFunctions[] = {"Next  ", "Prev   ", "Cancel ", " Search: ", NULL};
+static const char* const searchFunctions[] = {"İleri  ", "Geri   ", "İptal ", " Ara: ", NULL};
 static const char* const searchKeys[] = {"F3", "S-F3", "Esc", "  "};
 static const int searchEvents[] = {KEY_F(3), KEY_F(15), 27, ERR};
 
@@ -46,7 +46,7 @@ static inline void IncMode_initSearch(IncMode* search) {
    search->isFilter = false;
 }
 
-static const char* const filterFunctions[] = {"Done  ", "Clear ", " Filter: ", NULL};
+static const char* const filterFunctions[] = {"Bitti  ", "Temizle ", " Filtre: ", NULL};
 static const char* const filterKeys[] = {"Enter", "Esc", "  "};
 static const int filterEvents[] = {13, 27, ERR};
 
