@@ -51,13 +51,13 @@ static void ProcessLocksScreen_scan(InfoScreen* this) {
    Panel_prune(panel);
    FileLocks_ProcessData* pdata = Platform_getProcessLocks(((ProcessLocksScreen*)this)->pid);
    if (!pdata) {
-      InfoScreen_addLine(this, "This feature is not supported on your platform.");
+      InfoScreen_addLine(this, "Bu özellik, platformunuzda desteklenmiyor.");
    } else if (pdata->error) {
-      InfoScreen_addLine(this, "Could not determine file locks.");
+      InfoScreen_addLine(this, "Dosya kilitleri belirlenemedi.");
    } else {
       FileLocks_LockData* ldata = pdata->locks;
       if (!ldata) {
-         InfoScreen_addLine(this, "No locks have been found for the selected process.");
+         InfoScreen_addLine(this, "Seçilen işlem için kilit bulunamadı.");
       }
       while (ldata) {
          FileLocks_Data* data = &ldata->data;
