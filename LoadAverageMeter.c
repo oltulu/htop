@@ -105,10 +105,10 @@ const MeterClass LoadAverageMeter_class = {
    .maxItems = 3,
    .total = 100.0,
    .attributes = LoadAverageMeter_attributes,
-   .name = "LoadAverage",
-   .uiName = "Load average",
-   .description = "Load averages: 1 minute, 5 minutes, 15 minutes",
-   .caption = "Load average: "
+   .name = "Ortalama yük",
+   .uiName = "Ortalama yük",
+   .description = "Ortalama yük: 1 dakika, 5 dakika, 15 dakika",
+   .caption = "Ortalama yük: "
 };
 
 const MeterClass LoadMeter_class = {
@@ -122,8 +122,8 @@ const MeterClass LoadMeter_class = {
    .maxItems = 1,
    .total = 100.0,
    .attributes = LoadMeter_attributes,
-   .name = "Load",
-   .uiName = "Load",
-   .description = "Load: average of ready processes in the last minute",
-   .caption = "Load: "
+   .name = "Yük",
+   .uiName = "Yük",
+   .description = "Yük: son dakikada ortalama hazır işlem sayısı",
+   .caption = "Yük: "
 };
