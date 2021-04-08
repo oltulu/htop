@@ -20,7 +20,7 @@ static const int UptimeMeter_attributes[] = {
 static void UptimeMeter_updateValues(Meter* this) {
    int totalseconds = Platform_getUptime();
    if (totalseconds == -1) {
-      xSnprintf(this->txtBuffer, sizeof(this->txtBuffer), "(unknown)");
+      xSnprintf(this->txtBuffer, sizeof(this->txtBuffer), "(bilinmiyor)");
       return;
    }
    int seconds = totalseconds % 60;
@@ -33,11 +33,11 @@ static void UptimeMeter_updateValues(Meter* this) {
    }
    char daysbuf[32];
    if (days > 100) {
-      xSnprintf(daysbuf, sizeof(daysbuf), "%d days(!), ", days);
+      xSnprintf(daysbuf, sizeof(daysbuf), "%d gün(!), ", days);
    } else if (days > 1) {
-      xSnprintf(daysbuf, sizeof(daysbuf), "%d days, ", days);
+      xSnprintf(daysbuf, sizeof(daysbuf), "%d gün, ", days);
    } else if (days == 1) {
-      xSnprintf(daysbuf, sizeof(daysbuf), "1 day, ");
+      xSnprintf(daysbuf, sizeof(daysbuf), "1 gün, ");
    } else {
       daysbuf[0] = '\0';
    }
@@ -54,7 +54,7 @@ const MeterClass UptimeMeter_class = {
    .maxItems = 1,
    .total = 100.0,
    .attributes = UptimeMeter_attributes,
-   .name = "Uptime",
-   .uiName = "Uptime",
-   .caption = "Uptime: "
+   .name = "Çalışma Zamanı",
+   .uiName = "Çalışma Zamanı",
+   .caption = "Süre: "
 };
