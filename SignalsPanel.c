@@ -19,7 +19,7 @@ in the source distribution for its full text.
 
 
 Panel* SignalsPanel_new() {
-   Panel* this = Panel_new(1, 1, 1, 1, Class(ListItem), true, FunctionBar_newEnterEsc("Send   ", "Cancel "));
+   Panel* this = Panel_new(1, 1, 1, 1, Class(ListItem), true, FunctionBar_newEnterEsc("Gönder   ", "İptal "));
    const int defaultSignal = SIGTERM;
    int defaultPosition = 15;
    unsigned int i;
@@ -43,7 +43,7 @@ Panel* SignalsPanel_new() {
       }
    }
    #endif
-   Panel_setHeader(this, "Send signal:");
+   Panel_setHeader(this, "Sinyal gönder:");
    Panel_setSelected(this, defaultPosition);
    return this;
 }
