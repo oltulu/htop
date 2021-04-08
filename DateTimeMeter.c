@@ -44,7 +44,7 @@ const MeterClass DateTimeMeter_class = {
    .maxItems = 1,
    .total = 365,
    .attributes = DateTimeMeter_attributes,
-   .name = "DateTime",
-   .uiName = "Date and Time",
-   .caption = "Date & Time: ",
+   .name = "Tarih Zaman",
+   .uiName = "Tarih ve Zaman",
+   .caption = "Tarih & Zaman: ",
 };
