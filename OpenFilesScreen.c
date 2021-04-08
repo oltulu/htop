@@ -82,7 +82,7 @@ void OpenFilesScreen_delete(Object* this) {
 }
 
 static void OpenFilesScreen_draw(InfoScreen* this) {
-   InfoScreen_drawTitled(this, "Snapshot of files open in process %d - %s", ((OpenFilesScreen*)this)->pid, Process_getCommand(this->process));
+   InfoScreen_drawTitled(this, "İşlem sırasında açılan dosyaların anlık görüntüsü %d - %s", ((OpenFilesScreen*)this)->pid, Process_getCommand(this->process));
 }
 
 static OpenFiles_ProcessData* OpenFilesScreen_getProcessData(pid_t pid) {
@@ -205,9 +205,9 @@ static void OpenFilesScreen_scan(InfoScreen* this) {
    Panel_prune(panel);
    OpenFiles_ProcessData* pdata = OpenFilesScreen_getProcessData(((OpenFilesScreen*)this)->pid);
    if (pdata->error == 127) {
-      InfoScreen_addLine(this, "Could not execute 'lsof'. Please make sure it is available in your $PATH.");
+      InfoScreen_addLine(this, "'Lsof' yürütülemedi. Lütfen ürününüzde mevcut olduğundan emin olun. $PATH.");
    } else if (pdata->error == 1) {
-      InfoScreen_addLine(this, "Failed listing open files.");
+      InfoScreen_addLine(this, "Açık dosyalar listelenemedi.");
    } else {
       OpenFiles_FileData* fdata = pdata->files;
       while (fdata) {
