@@ -730,7 +730,7 @@ static void dumpStderr(void) {
 
       if (res > 0) {
          if (!header) {
-            fprintf(stderr, ">>>>>>>>>> stderr output >>>>>>>>>>\n\n");
+            fprintf(stderr, ">>>>>>>>>> stderr çıkışı >>>>>>>>>>\n\n");
             header = true;
          }
          (void)! write(STDERR_FILENO, buffer, res);
@@ -738,7 +738,7 @@ static void dumpStderr(void) {
    }
 
    if (header)
-      fprintf(stderr, "\n<<<<<<<<<< stderr output <<<<<<<<<<\n");
+      fprintf(stderr, "\n<<<<<<<<<< stderr çıkışı <<<<<<<<<<\n");
 
    close(stderrRedirectNewFd);
    stderrRedirectNewFd = -1;
@@ -916,19 +916,19 @@ void CRT_handleSIGSEGV(int signal) {
    CRT_done();
 
    fprintf(stderr, "\n\n"
-      "FATAL PROGRAM ERROR DETECTED\n"
-      "============================\n"
-      "Please check at https://htop.dev/issues whether this issue has already been reported.\n"
-      "If no similar issue has been reported before, please create a new issue with the following information:\n"
+      "ÖNEMLİ PROGRAM HATASI TESPİT EDİLDİ\n"
+      "===================================\n"
+      "Lütfen https://htop.dev/issues adresinden bu sorunun önceden bildirilip bildirilmediğini kontrol edin.\n"
+      "Daha önce benzer bir sorun bildirilmemişse, lütfen aşağıdaki bilgilerle yeni bir sorun oluşturun:\n"
       "\n"
-      "- Your htop version (htop --version)\n"
-      "- Your OS and kernel version (uname -a)\n"
-      "- Your distribution and release (lsb_release -a)\n"
-      "- Likely steps to reproduce (How did it happened?)\n"
+      "- Htop sürümünüz (htop - sürüm)\n"
+      "- İşletim sisteminiz ve çekirdek sürümünüz (uname -a)\n"
+      "- Dağıtımınız ve sürümünüz(lsb_release -a)\n"
+      "- Yeniden üretmek için olası adımlar (Nasıl oldu?)\n"
    );
 
 #ifdef HAVE_EXECINFO_H
-   fprintf(stderr, "- Backtrace of the issue (see below)\n");
+   fprintf(stderr, "- Sorunun geri takibi (aşağıya bakın)\n");
 #endif
 
    fprintf(stderr,
@@ -937,21 +937,21 @@ void CRT_handleSIGSEGV(int signal) {
 
    const char* signal_str = strsignal(signal);
    if (!signal_str) {
-      signal_str = "unknown reason";
+      signal_str = "bilinmeyen sebep";
    }
    fprintf(stderr,
-      "Error information:\n"
+      "hata bilgisi:\n"
       "------------------\n"
-      "A signal %d (%s) was received.\n"
+      "%d (%s) sinyali alındı.\n"
       "\n",
       signal, signal_str
    );
 
 #ifdef HAVE_EXECINFO_H
    fprintf(stderr,
-      "Backtrace information:\n"
+      "Geri izleme bilgileri:\n"
       "----------------------\n"
-      "The following function calls were active when the issue was detected:\n"
+      "Sorun tespit edildiğinde aşağıdaki işlev çağrıları etkindi:\n"
       "---\n"
    );
 
@@ -962,9 +962,9 @@ void CRT_handleSIGSEGV(int signal) {
    fprintf(stderr,
       "---\n"
       "\n"
-      "To make the above information more practical to work with,\n"
-      "you should provide a disassembly of your binary.\n"
-      "This can usually be done by running the following command:\n"
+      "Yukarıdaki bilgileri çalışmayı daha pratik hale getirmek için,\n"
+      "ikili programınızın bir demontajını sağlamalısınız.\n"
+      "Bu genellikle aşağıdaki komutu çalıştırarak yapılabilir.:\n"
       "\n"
    );
 
@@ -976,17 +976,17 @@ void CRT_handleSIGSEGV(int signal) {
 
    fprintf(stderr,
       "\n"
-      "Please include the generated file in your report.\n"
+      "Lütfen oluşturulan dosyayı raporunuza ekleyin.\n"
       "\n"
    );
 #endif
 
    fprintf(stderr,
-      "Running this program with debug symbols or inside a debugger may provide further insights.\n"
+      "Bu programı hata ayıklama sembolleriyle veya bir hata ayıklayıcı içinde çalıştırmak daha fazla bilgi sağlayabilir.\n"
       "\n"
-      "Thank you for helping to improve htop!\n"
+      "Htop'u geliştirmeye yardımcı olduğunuz için teşekkür ederiz!\n"
       "\n"
-      "htop " VERSION " aborting.\n"
+      "htop " VERSION " iptal ediliyor.\n"
       "\n"
    );
 
@@ -994,7 +994,7 @@ void CRT_handleSIGSEGV(int signal) {
    if (sigaction (signal, &old_sig_handler[signal], NULL) < 0) {
       /* This avoids an infinite loop in case the handler could not be reset. */
       fprintf(stderr,
-         "!!! Chained handler could not be restored. Forcing exit.\n"
+         "!!! Zincirli işleyici geri yüklenemedi. Çıkışı zorlamak.\n"
       );
       _exit(1);
    }
@@ -1004,7 +1004,7 @@ void CRT_handleSIGSEGV(int signal) {
 
    // Always terminate, even if installed handler returns
    fprintf(stderr,
-      "!!! Chained handler did not exit. Forcing exit.\n"
+      "!!! Zincirli işleyici çıkmadı. Çıkışı zorlamak.\n"
    );
    _exit(1);
 }
