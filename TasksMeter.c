@@ -55,7 +55,7 @@ static void TasksMeter_display(const Object* cast, RichString* out) {
    RichString_appendAscii(out, CRT_colors[METER_TEXT], "; ");
    xSnprintf(buffer, sizeof(buffer), "%d", (int)this->values[3]);
    RichString_appendAscii(out, CRT_colors[TASKS_RUNNING], buffer);
-   RichString_appendAscii(out, CRT_colors[METER_TEXT], " running");
+   RichString_appendAscii(out, CRT_colors[METER_TEXT], " çalışıyor");
 }
 
 const MeterClass TasksMeter_class = {
@@ -69,7 +69,7 @@ const MeterClass TasksMeter_class = {
    .maxItems = 4,
    .total = 100.0,
    .attributes = TasksMeter_attributes,
-   .name = "Tasks",
-   .uiName = "Task counter",
-   .caption = "Tasks: "
+   .name = "Görev",
+   .uiName = "Görev sayacı",
+   .caption = "Görev: "
 };
