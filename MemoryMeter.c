@@ -52,28 +52,28 @@ static void MemoryMeter_display(const Object* cast, RichString* out) {
    RichString_appendAscii(out, CRT_colors[METER_VALUE], buffer);
 
    Meter_humanUnit(buffer, this->values[0], sizeof(buffer));
-   RichString_appendAscii(out, CRT_colors[METER_TEXT], " used:");
+   RichString_appendAscii(out, CRT_colors[METER_TEXT], " kullanılan:");
    RichString_appendAscii(out, CRT_colors[MEMORY_USED], buffer);
 
    Meter_humanUnit(buffer, this->values[1], sizeof(buffer));
-   RichString_appendAscii(out, CRT_colors[METER_TEXT], " buffers:");
+   RichString_appendAscii(out, CRT_colors[METER_TEXT], " tampon:");
    RichString_appendAscii(out, CRT_colors[MEMORY_BUFFERS_TEXT], buffer);
 
    /* shared memory is not supported on all platforms */
    if (!isnan(this->values[2])) {
       Meter_humanUnit(buffer, this->values[2], sizeof(buffer));
-      RichString_appendAscii(out, CRT_colors[METER_TEXT], " shared:");
+      RichString_appendAscii(out, CRT_colors[METER_TEXT], " paylaşılan:");
       RichString_appendAscii(out, CRT_colors[MEMORY_SHARED], buffer);
    }
 
    Meter_humanUnit(buffer, this->values[3], sizeof(buffer));
-   RichString_appendAscii(out, CRT_colors[METER_TEXT], " cache:");
+   RichString_appendAscii(out, CRT_colors[METER_TEXT], " bellek:");
    RichString_appendAscii(out, CRT_colors[MEMORY_CACHE], buffer);
 
    /* available memory is not supported on all platforms */
    if (!isnan(this->values[4])) {
       Meter_humanUnit(buffer, this->values[4], sizeof(buffer));
-      RichString_appendAscii(out, CRT_colors[METER_TEXT], " available:");
+      RichString_appendAscii(out, CRT_colors[METER_TEXT], " kullanılabilir:");
       RichString_appendAscii(out, CRT_colors[METER_VALUE], buffer);
    }
 }
@@ -89,7 +89,7 @@ const MeterClass MemoryMeter_class = {
    .maxItems = 5,
    .total = 100.0,
    .attributes = MemoryMeter_attributes,
-   .name = "Memory",
-   .uiName = "Memory",
-   .caption = "Mem"
+   .name = "Hafıza",
+   .uiName = "Hafıza",
+   .caption = "Hfz"
 };
