@@ -43,7 +43,7 @@ static void NetworkIOMeter_updateValues(Meter* this) {
       NetworkIOData data;
       hasData = Platform_getNetworkIO(&data);
       if (!hasData) {
-         xSnprintf(this->txtBuffer, sizeof(this->txtBuffer), "no data");
+         xSnprintf(this->txtBuffer, sizeof(this->txtBuffer), "veri yok");
          return;
       }
 
@@ -98,7 +98,7 @@ static void NetworkIOMeter_updateValues(Meter* this) {
 
 static void NetworkIOMeter_display(ATTR_UNUSED const Object* cast, RichString* out) {
    if (!hasData) {
-      RichString_writeAscii(out, CRT_colors[METER_VALUE_ERROR], "no data");
+      RichString_writeAscii(out, CRT_colors[METER_VALUE_ERROR], "veri yok");
       return;
    }
 
@@ -114,7 +114,7 @@ static void NetworkIOMeter_display(ATTR_UNUSED const Object* cast, RichString* o
    RichString_appendAscii(out, CRT_colors[METER_VALUE_IOWRITE], buffer);
    RichString_appendAscii(out, CRT_colors[METER_VALUE_IOWRITE], "iB/s");
 
-   xSnprintf(buffer, sizeof(buffer), " (%u/%u packets) ", cached_rxp_diff, cached_txp_diff);
+   xSnprintf(buffer, sizeof(buffer), " (%u/%u paket) ", cached_rxp_diff, cached_txp_diff);
    RichString_appendAscii(out, CRT_colors[METER_TEXT], buffer);
 }
 
@@ -129,7 +129,7 @@ const MeterClass NetworkIOMeter_class = {
    .maxItems = 2,
    .total = 100.0,
    .attributes = NetworkIOMeter_attributes,
-   .name = "NetworkIO",
-   .uiName = "Network IO",
-   .caption = "Network: "
+   .name = "Ağ IO",
+   .uiName = "Ağ IO",
+   .caption = "Ağ: "
 };
