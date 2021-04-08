@@ -21,7 +21,7 @@ in the source distribution for its full text.
 #include "XUtils.h"
 
 
-static const char* const AvailableColumnsFunctions[] = {"      ", "      ", "      ", "      ", "Add   ", "      ", "      ", "      ", "      ", "Done  ", NULL};
+static const char* const AvailableColumnsFunctions[] = {"      ", "      ", "      ", "      ", "Ekle   ", "      ", "      ", "      ", "      ", "Tamam  ", NULL};
 
 static void AvailableColumnsPanel_delete(Object* object) {
    Panel* super = (Panel*) object;
@@ -75,7 +75,7 @@ AvailableColumnsPanel* AvailableColumnsPanel_new(Panel* columns) {
    FunctionBar* fuBar = FunctionBar_new(AvailableColumnsFunctions, NULL, NULL);
    Panel_init(super, 1, 1, 1, 1, Class(ListItem), true, fuBar);
 
-   Panel_setHeader(super, "Available Columns");
+   Panel_setHeader(super, "Kullanılabilir Sütunlar");
 
    for (int i = 1; i < LAST_PROCESSFIELD; i++) {
       if (i != COMM && Process_fields[i].description) {
