@@ -38,7 +38,7 @@ const MeterClass ClockMeter_class = {
    .maxItems = 1,
    .total = 1440, /* 24*60 */
    .attributes = ClockMeter_attributes,
-   .name = "Clock",
-   .uiName = "Clock",
-   .caption = "Time: ",
+   .name = "Saat",
+   .uiName = "Saat",
+   .caption = "Süre: ",
 };
