@@ -172,7 +172,7 @@ static void AffinityPanel_updateTopo(AffinityPanel* this, MaskItem* item) {
 static void AffinityPanel_update(AffinityPanel* this, bool keepSelected) {
    Panel* super = (Panel*) this;
 
-   FunctionBar_setLabel(super->currentBar, KEY_F(3), this->topoView ? "Collapse/Expand" : "");
+   FunctionBar_setLabel(super->currentBar, KEY_F(3), this->topoView ? "Daralt/Genişlet" : "");
 
    int oldSelected = Panel_getSelectedIndex(super);
    Panel_prune(super);
@@ -345,11 +345,11 @@ const PanelClass AffinityPanel_class = {
 };
 
 static const char* const AffinityPanelFunctions[] = {
-   "Set    ",
-   "Cancel ",
+   "Ayarla    ",
+   "İptal ",
    #ifdef HAVE_LIBHWLOC
-   "All",
-   "Topology",
+   "Tümü",
+   "Topoloji",
    "               ",
    #endif
    NULL
@@ -380,7 +380,7 @@ Panel* AffinityPanel_new(ProcessList* pl, const Affinity* affinity, int* width) 
    this->workCpuset = hwloc_bitmap_alloc();
    #endif
 
-   Panel_setHeader(super, "Use CPUs:");
+   Panel_setHeader(super, "CPU kullan:");
 
    unsigned int curCpu = 0;
    for (unsigned int i = 0; i < pl->cpuCount; i++) {
