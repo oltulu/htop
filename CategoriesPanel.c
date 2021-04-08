@@ -24,7 +24,7 @@ in the source distribution for its full text.
 #include "Vector.h"
 
 
-static const char* const CategoriesFunctions[] = {"      ", "      ", "      ", "      ", "      ", "      ", "      ", "      ", "      ", "Done  ", NULL};
+static const char* const CategoriesFunctions[] = {"      ", "      ", "      ", "      ", "      ", "      ", "      ", "      ", "      ", "Bitti  ", NULL};
 
 static void CategoriesPanel_delete(Object* object) {
    Panel* super = (Panel*) object;
@@ -34,8 +34,8 @@ static void CategoriesPanel_delete(Object* object) {
 }
 
 void CategoriesPanel_makeMetersPage(CategoriesPanel* this) {
-   MetersPanel* leftMeters = MetersPanel_new(this->settings, "Left column", this->header->columns[0], this->scr);
-   MetersPanel* rightMeters = MetersPanel_new(this->settings, "Right column", this->header->columns[1], this->scr);
+   MetersPanel* leftMeters = MetersPanel_new(this->settings, "Sol sütun", this->header->columns[0], this->scr);
+   MetersPanel* rightMeters = MetersPanel_new(this->settings, "Sağ sütun", this->header->columns[1], this->scr);
    leftMeters->rightNeighbor = rightMeters;
    rightMeters->leftNeighbor = leftMeters;
    Panel* availableMeters = (Panel*) AvailableMetersPanel_new(this->settings, this->header, (Panel*) leftMeters, (Panel*) rightMeters, this->scr, this->pl);
@@ -134,10 +134,10 @@ CategoriesPanel* CategoriesPanel_new(ScreenManager* scr, Settings* settings, Hea
    this->settings = settings;
    this->header = header;
    this->pl = pl;
-   Panel_setHeader(super, "Setup");
-   Panel_add(super, (Object*) ListItem_new("Meters", 0));
-   Panel_add(super, (Object*) ListItem_new("Display options", 0));
-   Panel_add(super, (Object*) ListItem_new("Colors", 0));
-   Panel_add(super, (Object*) ListItem_new("Columns", 0));
+   Panel_setHeader(super, "Kur");
+   Panel_add(super, (Object*) ListItem_new("Metre", 0));
+   Panel_add(super, (Object*) ListItem_new("Görüntüleme seçenekleri", 0));
+   Panel_add(super, (Object*) ListItem_new("Renkler", 0));
+   Panel_add(super, (Object*) ListItem_new("Sütunlar", 0));
    return this;
 }
