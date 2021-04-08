@@ -338,10 +338,10 @@ static Htop_Reaction actionKill(State* st) {
 
 static Htop_Reaction actionFilterByUser(State* st) {
    Panel* usersPanel = Panel_new(0, 0, 0, 0, Class(ListItem), true, FunctionBar_newEnterEsc("Göster   ", "İptal "));
-   Panel_setHeader(usersPanel, "Show processes of:");
+   Panel_setHeader(usersPanel, "İşlemlerini göster:");
    UsersTable_foreach(st->ut, addUserToVector, usersPanel);
    Vector_insertionSort(usersPanel->items);
-   ListItem* allUsers = ListItem_new("All users", -1);
+   ListItem* allUsers = ListItem_new("Tüm Kullanıcılar", -1);
    Panel_insert(usersPanel, 0, (Object*) allUsers);
    const ListItem* picked = (ListItem*) Action_pickFromVector(st, usersPanel, 20, false);
    if (picked) {
@@ -441,14 +441,14 @@ static const struct {
    { .key = "      p: ", .info = "program yolunu değiştir" },
    { .key = "      m: ", .info = "birleştirilmiş komutu aç / kapat" },
    { .key = "      Z: ", .info = "işlem güncellemelerini duraklat / devam ettir" },
-   { .key = "      u: ", .info = "show processes of a single user" },
-   { .key = "      H: ", .info = "hide/show user process threads" },
-   { .key = "      K: ", .info = "hide/show kernel threads" },
-   { .key = "      F: ", .info = "cursor follows process" },
-   { .key = "  + - *: ", .info = "expand/collapse tree/toggle all" },
-   { .key = "N P M T: ", .info = "sort by PID, CPU%, MEM% or TIME" },
-   { .key = "      I: ", .info = "invert sort order" },
-   { .key = " F6 > .: ", .info = "select sort column" },
+   { .key = "      u: ", .info = "tek bir kullanıcının işlemlerini göster" },
+   { .key = "      H: ", .info = "kullanıcı işlem dizilerini gizle/göster" },
+   { .key = "      K: ", .info = "çekirdek dizilerini gizle/göster" },
+   { .key = "      F: ", .info = "imleç süreci takip eders" },
+   { .key = "  + - *: ", .info = "ağacı genişlet/daralt/tümünü değiştir" },
+   { .key = "N P M T: ", .info = "PID, CPU%, MEM% veya TIME göre sırala" },
+   { .key = "      I: ", .info = "sıralama düzenini ters çevir" },
+   { .key = " F6 > .: ", .info = "sıralama sütununu seçin" },
    { .key = NULL, .info = NULL }
 };
 
@@ -456,8 +456,8 @@ static const struct {
    const char* key;
    const char* info;
 } helpRight[] = {
-   { .key = "  Boşluk: ", .info = "tag process" },
-   { .key = "      c: ", .info = "tag process and its children" },
+   { .key = "  Boşluk: ", .info = "etiket işlemi" },
+   { .key = "      c: ", .info = "etiket süreci ve alt öğeleri" },
    { .key = "      U: ", .info = "untag all processes" },
    { .key = "   F9 k: ", .info = "kill process/tagged processes" },
    { .key = "   F7 ]: ", .info = "higher priority (root only)" },
