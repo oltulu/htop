@@ -33,7 +33,7 @@ const MeterClass SysArchMeter_class = {
    .maxItems = 0,
    .total = 100.0,
    .attributes = SysArchMeter_attributes,
-   .name = "System",
-   .uiName = "System",
-   .caption = "System: ",
+   .name = "Sistem",
+   .uiName = "Sistem",
+   .caption = "Sistem: ",
 };
