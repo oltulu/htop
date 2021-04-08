@@ -306,7 +306,7 @@ static Htop_Reaction actionSetAffinity(State* st) {
 
    int width;
    Panel* affinityPanel = AffinityPanel_new(st->pl, affinity1, &width);
-   width += 1; /* we add a gap between the panels */
+   width += 1; /* paneller arasına boşluk ekliyoruz */
    Affinity_delete(affinity1);
 
    const void* set = Action_pickFromVector(st, affinityPanel, width, true);
@@ -458,22 +458,22 @@ static const struct {
 } helpRight[] = {
    { .key = "  Boşluk: ", .info = "etiket işlemi" },
    { .key = "      c: ", .info = "etiket süreci ve alt öğeleri" },
-   { .key = "      U: ", .info = "untag all processes" },
-   { .key = "   F9 k: ", .info = "kill process/tagged processes" },
-   { .key = "   F7 ]: ", .info = "higher priority (root only)" },
-   { .key = "   F8 [: ", .info = "lower priority (+ nice)" },
+   { .key = "      U: ", .info = "tüm süreçlerin etiketini kaldır" },
+   { .key = "   F9 k: ", .info = "işlemi/etiketli işlemleri sonlandır" },
+   { .key = "   F7 ]: ", .info = "daha yüksek öncelik (yalnızca kök)" },
+   { .key = "   F8 [: ", .info = "düşük öncelikli (+ güzel)" },
 #if (defined(HAVE_LIBHWLOC) || defined(HAVE_LINUX_AFFINITY))
-   { .key = "      a: ", .info = "set CPU affinity" },
+   { .key = "      a: ", .info = "CPU benzeşimini ayarla" },
 #endif
-   { .key = "      e: ", .info = "show process environment" },
-   { .key = "      i: ", .info = "set IO priority" },
-   { .key = "      l: ", .info = "list open files with lsof" },
-   { .key = "      x: ", .info = "list file locks of process" },
-   { .key = "      s: ", .info = "trace syscalls with strace" },
-   { .key = "      w: ", .info = "wrap process command in multiple lines" },
-   { .key = " F2 C S: ", .info = "setup" },
-   { .key = "   F1 h: ", .info = "show this help screen" },
-   { .key = "  F10 q: ", .info = "quit" },
+   { .key = "      e: ", .info = "süreç ortamını göster" },
+   { .key = "      i: ", .info = "IO önceliğini ayarla" },
+   { .key = "      l: ", .info = "lsof ile açık dosyaları listeleme" },
+   { .key = "      x: ", .info = "işlemin dosya kilitlerini listeleyin" },
+   { .key = "      s: ", .info = "sistem çağrılarını strace ile izleme" },
+   { .key = "      w: ", .info = "birden çok satıra sarma işlemi komutu" },
+   { .key = " F2 C S: ", .info = "kur" },
+   { .key = "   F1 h: ", .info = "bu yardım ekranını göster" },
+   { .key = "  F10 q: ", .info = "çık" },
    { .key = NULL, .info = NULL }
 };
 
@@ -506,9 +506,9 @@ static Htop_Reaction actionHelp(State* st) {
       addattrstr(CRT_colors[CPU_IRQ], "irq"); addstr("/");
       addattrstr(CRT_colors[CPU_SOFTIRQ], "soft-irq"); addstr("/");
       addattrstr(CRT_colors[CPU_STEAL], "steal"); addstr("/");
-      addattrstr(CRT_colors[CPU_GUEST], "guest"); addstr("/");
-      addattrstr(CRT_colors[CPU_IOWAIT], "io-wait");
-      addattrstr(CRT_colors[BAR_SHADOW], " used%");
+      addattrstr(CRT_colors[CPU_GUEST], "misafir"); addstr("/");
+      addattrstr(CRT_colors[CPU_IOWAIT], "io-bekle");
+      addattrstr(CRT_colors[BAR_SHADOW], " kullanılan%");
    } else {
       addattrstr(CRT_colors[CPU_NICE_TEXT], "low-priority"); addstr("/");
       addattrstr(CRT_colors[CPU_NORMAL], "normal"); addstr("/");
@@ -521,9 +521,9 @@ static Htop_Reaction actionHelp(State* st) {
    mvaddstr(line++, 0, "Hafıza Barı:    ");
    addattrstr(CRT_colors[BAR_BORDER], "[");
    addattrstr(CRT_colors[MEMORY_USED], "kullanılan"); addstr("/");
-   addattrstr(CRT_colors[MEMORY_BUFFERS_TEXT], "buffers"); addstr("/");
+   addattrstr(CRT_colors[MEMORY_BUFFERS_TEXT], "tamponlar"); addstr("/");
    addattrstr(CRT_colors[MEMORY_SHARED], "paylaşılan"); addstr("/");
-   addattrstr(CRT_colors[MEMORY_CACHE], "cache");
+   addattrstr(CRT_colors[MEMORY_CACHE], "önbellek");
    addattrstr(CRT_colors[BAR_SHADOW], "                     kullanılan/toplam");
    addattrstr(CRT_colors[BAR_BORDER], "]");
    attrset(CRT_colors[DEFAULT_COLOR]);
@@ -532,7 +532,7 @@ static Htop_Reaction actionHelp(State* st) {
    addattrstr(CRT_colors[SWAP], "used");
 #ifdef HTOP_LINUX
    addattrstr(CRT_colors[BAR_SHADOW], "/");
-   addattrstr(CRT_colors[SWAP_CACHE], "cache");
+   addattrstr(CRT_colors[SWAP_CACHE], "önbellek");
    addattrstr(CRT_colors[BAR_SHADOW], "                                    kullanılan/toplam");
 #else
    addattrstr(CRT_colors[BAR_SHADOW], "                                          kullanılan/toplam");
@@ -557,10 +557,10 @@ static Htop_Reaction actionHelp(State* st) {
       mvaddstr(line + item, 1,  helpLeft[item].key);
       if (String_eq(helpLeft[item].key, "      H: ")) {
          attrset(CRT_colors[PROCESS_THREAD]);
-         mvaddstr(line + item, 33, "threads");
+         mvaddstr(line + item, 33, "İş Parçacığı");
       } else if (String_eq(helpLeft[item].key, "      K: ")) {
          attrset(CRT_colors[PROCESS_THREAD]);
-         mvaddstr(line + item, 27, "threads");
+         mvaddstr(line + item, 27, "İş Parçacığı");
       }
    }
    int leftHelpItems = item;
